@@ -118,7 +118,7 @@ fun ExtendedExample(onClick: () -> Unit, backgroundColor: Color) {
         onClick = { onClick() },
         containerColor = backgroundColor,
         icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
-        text = { Text(text = "Extended FAB") }
+        text = { Text(text = "Botão") }
     )
 }
 
