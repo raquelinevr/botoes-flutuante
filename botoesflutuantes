@@ -1,0 +1,131 @@
+package com.example.barradeapps
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.barradeapps.ui.theme.BarraDeAppsTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            BarraDeAppsTheme {
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    floatingActionButton = {
+                        FloatingActionButtons()
+                    }
+                ) { innerPadding ->
+                    Greeting(
+                        name = "",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Botões flutuantes",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun FloatingActionButtons() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(bottom = 80.dp)
+        ) {
+            Example(
+                onClick = { },
+                backgroundColor = Color.Yellow
+            )
+            SmallExample(
+                onClick = {  },
+                backgroundColor = Color.Green
+            )
+            LargeExample(
+                onClick = {  },
+                backgroundColor = Color.Yellow
+            )
+            ExtendedExample(
+                onClick = { },
+                backgroundColor = Color.Green
+            )
+        }
+    }
+}
+
+@Composable
+fun Example(onClick: () -> Unit, backgroundColor: Color) {
+    FloatingActionButton(
+        onClick = { onClick() },
+        containerColor = backgroundColor
+    ) {
+        Icon(Icons.Filled.Add, "Floating action button.")
+    }
+}
+
+@Composable
+fun SmallExample(onClick: () -> Unit, backgroundColor: Color) {
+    SmallFloatingActionButton(
+        onClick = { onClick() },
+        containerColor = backgroundColor,
+        contentColor = Color.White
+    ) {
+        Icon(Icons.Filled.Add, "Small floating action button.")
+    }
+}
+
+@Composable
+fun LargeExample(onClick: () -> Unit, backgroundColor: Color) {
+    LargeFloatingActionButton(
+        onClick = { onClick() },
+        containerColor = backgroundColor,
+        shape = CircleShape
+    ) {
+        Icon(Icons.Filled.Add, "Large floating action button")
+    }
+}
+
+@Composable
+fun ExtendedExample(onClick: () -> Unit, backgroundColor: Color) {
+    ExtendedFloatingActionButton(
+        onClick = { onClick() },
+        containerColor = backgroundColor,
+        icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
+        text = { Text(text = "Extended FAB") }
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    BarraDeAppsTheme {
+        Greeting("Android")
+    }
+}
